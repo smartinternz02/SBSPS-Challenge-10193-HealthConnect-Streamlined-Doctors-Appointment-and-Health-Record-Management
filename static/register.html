@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Connect System - Register</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background-image: url('/images/reg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            animation: backgroundAnimation 20s infinite alternate;
+        }
+
+        @keyframes backgroundAnimation {
+            0% {
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .container {
+            max-width: 500px;
+            margin-top: 50px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.9); /* Add a semi-transparent white background */
+        }
+
+        .card-header {
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            font-size: 24px;
+            padding: 15px 0;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            padding: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background-color: #495057;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h3>Register for Health Connect System</h3>
+            </div>
+            <div class="card-body">
+                <form action="/register" method="post">
+                    <div class="form-group">
+                        <label for="username" class="form-label">Username:</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="form-label">Password:</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm_password" class="form-label">Confirm Password:</label>
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="user_type" class="form-label">User Type:</label>
+                        <select class="form-control" id="user_type" name="user_type" required onchange="toggleInsuranceField(this)">
+                            <option value="doctor">Doctor</option>
+                            <option value="patient">Patient</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="insuranceField" style="display: none;">
+                        <label for="insurance" class="form-label">Insurance:</label>
+                        <input type="text" class="form-control" id="insurance" name="insurance">
+                    </div>
+                    <div class="form-group">
+                        <label for="firstname" class="form-label">First Name:</label>
+                        <input type="text" class="form-control" id="firstname" name="fname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname" class="form-label">Last Name (optional):</label>
+                        <input type="text" class="form-control" id="lastname" name="lname">
+                    </div>
+                    <div class="form-group">
+                        <label for="number" class="form-label">Phone Number:</label>
+                        <input type="text" class="form-control" id="number" name="number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Address" class="form-label">Address:</label>
+                        <input type="text" class="form-control" id="Address" name="Address" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block" onclick="validateForm()">Register</button>
+                </form>
+                <p class="mt-3 text-center">Already have an account? <a href="/login.html">Log In</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function validateForm() {
+            var password = document.getElementById("password").value;
+            var confirm_password = document.getElementById("confirm_password").value;
+            if (password !== confirm_password) {
+                alert("Passwords do not match. Please try again.");
+                return false;
+            }
+        }
+        function toggleInsuranceField(selectElement) {
+            var insuranceField = document.getElementById("insuranceField");
+            if (selectElement.value === "patient") {
+                insuranceField.style.display = "block";
+            } else {
+                insuranceField.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

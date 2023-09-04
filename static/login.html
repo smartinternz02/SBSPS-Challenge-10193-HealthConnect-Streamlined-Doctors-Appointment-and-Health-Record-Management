@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Connect System - Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-image: url('/images/hospital.jpg'); /* Replace 'your-image-url.jpg' with your image URL */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            animation: backgroundAnimation 10s infinite alternate;
+        }
+        @keyframes backgroundAnimation {
+            0% {
+                background-color: #f0f0f0;
+            }
+            100% {
+                background-color: #e0e0e0;
+            }
+        }
+        .container {
+            max-width: 400px;
+            margin-top: 100px;
+            animation: fadeIn 3s;
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        .card {
+            border: none;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            animation: slideIn 1s;
+        }
+        @keyframes slideIn {
+            0% {
+                transform: translateX(-50px);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+        .card-header {
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .btn-primary, .btn-secondary {
+            background-color: #007BFF;
+            border: none;
+            transition: all 0.3s;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+        .btn-primary:hover, .btn-secondary:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+        }
+        .form-control {
+            border: none;
+            border-bottom: 2px solid #007BFF;
+            border-radius: 0;
+            padding: 5px 0;
+            background-color: transparent;
+            box-shadow: none;
+            transition: border-color 0.3s;
+        }
+        .form-control:focus {
+            border-color: #0056b3;
+        }
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h3>Health Connect System</h3>
+            </div>
+            <div class="card-body">
+                <form action="/login" method="post">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="password" name="password" required>
+                            <div class="input-group-append">
+                                <span class="input-group-text password-toggle" onclick="togglePasswordVisibility()">
+                                    <i class="far fa-eye"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="user_type">User Type:</label>
+                        <select class="form-control" id="user_type" name="user_type" required>
+                            <option value="doctor">Doctor</option>
+                            <option value="patient">Patient</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Log In</button>
+                </form>
+                <button class="btn btn-secondary btn-block mt-2" onclick="goToRegister()">Register</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function goToRegister() {
+            window.location.href = '/register.html';
+        }
+        
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById('password');
+            var passwordToggle = document.querySelector('.password-toggle');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                passwordToggle.innerHTML = '<i class="far fa-eye-slash"></i>';
+            } else {
+                passwordInput.type = 'password';
+                passwordToggle.innerHTML = '<i class="far fa-eye"></i>';
+            }
+        }
+    </script>
+</body>
+</html>
